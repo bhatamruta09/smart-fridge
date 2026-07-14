@@ -39,10 +39,30 @@ People often don't know what to cook with the ingredients they already have, lea
 - **Testing:** JUnit, Mockito
 
 ## Architecture
-*(To be added in Phase 2 — system design and architecture diagram)*
+See [docs/architecture.md](docs/architecture.md) for the full system architecture, database schema (ERD), and API design.
+
+## Ports
+To avoid conflicts with other local projects, Smart Fridge uses non-default ports:
+
+| Service | Port |
+|---|---|
+| Backend (Spring Boot) | 8081 |
+| Frontend (Angular) | 4201 |
+| PostgreSQL | 5433 |
 
 ## Getting Started
-*(To be added once backend and frontend setup is finalized)*
+
+### Backend
+1. Open `smart-fridge-backend` in Eclipse as an existing Maven project
+2. Ensure Docker Desktop is running (PostgreSQL is started automatically via Docker Compose)
+3. Run `SmartFridgeBackendApplication.java` as a Spring Boot App
+4. Backend runs at `http://localhost:8081`
+
+### Frontend
+1. Open `smart-fridge-frontend` in VS Code
+2. Run `npm install`
+3. Run `ng serve` (port 4201 is pre-configured in `angular.json`)
+4. Frontend runs at `http://localhost:4201`
 
 ## API Documentation
 *(To be added as endpoints are implemented)*

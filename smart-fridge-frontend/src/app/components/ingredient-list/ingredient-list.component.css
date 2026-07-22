@@ -1,0 +1,153 @@
+.fridge-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Inter', sans-serif;
+  color: #2B2B28;
+}
+
+.fridge-header {
+  margin-bottom: 32px;
+}
+
+.fridge-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fridge-title h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  margin: 0;
+  color: #2B2B28;
+}
+
+.fridge-icon {
+  font-size: 26px;
+}
+
+.fridge-subtitle {
+  color: #8A8778;
+  margin: 4px 0 0;
+  font-size: 14px;
+}
+
+.card {
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid #EFEDE6;
+}
+
+.card h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0 0 16px;
+  color: #4C7A5E;
+}
+
+.add-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 10px;
+}
+
+.add-form input {
+  padding: 10px 12px;
+  border: 1px solid #E3E1D8;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  background: #FAF9F5;
+}
+
+.add-form input:focus {
+  outline: none;
+  border-color: #4C7A5E;
+}
+
+.btn-primary {
+  background: #E07856;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: #C9663F;
+}
+
+.ingredient-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ingredient-table th {
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #8A8778;
+  padding: 8px 10px;
+  border-bottom: 1px solid #EFEDE6;
+}
+
+.ingredient-table td {
+  padding: 12px 10px;
+  font-size: 14px;
+  border-bottom: 1px solid #F5F4EF;
+}
+
+.ingredient-table tr:last-child td {
+  border-bottom: none;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4C7A5E;
+}
+
+.empty-state {
+  color: #8A8778;
+  font-size: 14px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-icon {
+  background: none;
+  border: 1px solid #E3E1D8;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #4C7A5E;
+}
+
+.btn-icon:hover {
+  background: #F5F4EF;
+}
+
+.btn-danger {
+  color: #C9663F;
+  border-color: #E8C9BB;
+}

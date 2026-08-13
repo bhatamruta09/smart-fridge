@@ -1,0 +1,123 @@
+.auth-page {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3c589;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.auth-card {
+  width: 340px;
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 32px 28px;
+  border: 1.5px solid #DAD7CB;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.fridge-icon {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.auth-header h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0;
+  color: #2B2B28;
+}
+
+.auth-header p {
+  font-size: 13px;
+  color: #5F5E5A;
+  margin: 4px 0 0;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-form label {
+  font-size: 12px;
+  color: #5F5E5A;
+  margin-top: 8px;
+}
+
+.auth-form input {
+  padding: 10px 12px;
+  border: 1.5px solid #B8B5A8;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #FFFFFF;
+  color: #2B2B28;
+  font-family: 'Inter', sans-serif;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #2E5240;
+}
+
+.btn-primary {
+  margin-top: 14px;
+  background: #D85A30;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 11px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: #B3502A;
+}
+
+.message {
+  font-size: 13px;
+  text-align: center;
+  margin: 16px 0 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.message.error {
+  background: #FBEFE9;
+  color: #B3502A;
+  border: 1px solid #E0A78E;
+}
+
+.message.success {
+  background: #EFF3EC;
+  color: #2E5240;
+  border: 1px solid #B0C4B5;
+}
+
+.switch-link {
+  text-align: center;
+  font-size: 13px;
+  color: #5F5E5A;
+  margin: 18px 0 0;
+}
+
+.switch-link a {
+  color: #2E5240;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.switch-link a:hover {
+  text-decoration: underline;
+}

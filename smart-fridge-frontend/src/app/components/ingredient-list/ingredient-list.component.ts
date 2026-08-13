@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Ingredient } from '../../models/ingredient.model';
 import { IngredientService } from "../../services/ingredient.service";
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-ingredient-list',
@@ -17,10 +19,14 @@ export class IngredientListComponent implements OnInit {
   newIngredient: Ingredient = { name: '', quantity: 0, unit: '' };
   editingId: number | null = null;
   editIngredient: Ingredient = { name: '', quantity: 0, unit: '' };
+  username: string | null = null;
 
-  constructor(private ingredientService: IngredientService) {}
+  constructor(private ingredientService: IngredientService,
+    private authService: AuthService,
+    private router: Router) {}
 
   ngOnInit(): void {
+    this.username = this.authService.getUsername();
     this.loadIngredients();
   }
 
@@ -39,6 +45,11 @@ export class IngredientListComponent implements OnInit {
       },
       error: (err) => { console.error('Failed to add ingredient:', err); }
     });
+  }
+
+  onLogout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
   startEdit(ingredient: Ingredient): void {

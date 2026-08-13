@@ -1,0 +1,27 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-header">
+      <span class="fridge-icon">🧊</span>
+      <h2>Create an account</h2>
+      <p>Start tracking your fridge</p>
+    </div>
+
+    <form (ngSubmit)="onRegister()" class="auth-form">
+      <label>Username</label>
+      <input type="text" [(ngModel)]="registerData.username" name="username" required />
+
+      <label>Email</label>
+      <input type="email" [(ngModel)]="registerData.email" name="email" required />
+
+      <label>Password</label>
+      <input type="password" [(ngModel)]="registerData.password" name="password" required />
+
+      <button type="submit" class="btn-primary">Create account</button>
+    </form>
+
+    <p *ngIf="errorMessage" class="message error">{{ errorMessage }}</p>
+    <p *ngIf="successMessage" class="message success">{{ successMessage }}</p>
+
+    <p class="switch-link">Already have an account? <a routerLink="/login">Log in</a></p>
+  </div>
+</div>

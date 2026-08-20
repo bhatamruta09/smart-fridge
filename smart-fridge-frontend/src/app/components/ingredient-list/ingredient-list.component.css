@@ -1,7 +1,7 @@
-/* Full page wrapper - no card, no max-width constraint */
+/* Full page wrapper */
 .fridge-page {
   min-height: 100vh;
-  background: #f3c589;
+  background: #E4DFD0;
   font-family: 'Inter', sans-serif;
   color: #2B2B28;
 }
@@ -18,9 +18,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  box-sizing: border-box;
   padding: 18px 40px;
-  background:#ecaf33;
+  background: #FFFFFF;
   border-bottom: 1.5px solid #DAD7CB;
 }
 
@@ -30,7 +29,7 @@
   gap: 8px;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 30px;
+  font-size: 17px;
   color: #2B2B28;
 }
 
@@ -41,8 +40,8 @@
 }
 
 .username {
-  font-size: 15px;
-  color: #f5f4f1;
+  font-size: 13px;
+  color: #5F5E5A;
 }
 
 .btn-logout {
@@ -50,7 +49,7 @@
   border: 1.5px solid #B8B5A8;
   border-radius: 8px;
   padding: 7px 16px;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 500;
   color: #3D3D3A;
   cursor: pointer;
@@ -60,11 +59,33 @@
   background: #E5E2D6;
 }
 
-/* Content area below the header - centered, comfortable reading width */
+/* Two-column content area: ingredients left, recipes right */
 .fridge-content {
-  max-width: 720px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 32px 20px 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .fridge-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fridge-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.fridge-right {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 24px;
 }
 
 .card {
@@ -73,7 +94,6 @@
   padding: 24px;
   margin-bottom: 24px;
   border: 1.5px solid #DAD7CB;
-  box-sizing: border-box;
   width: 100%;
 }
 
@@ -87,15 +107,13 @@
 
 .add-form {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
   gap: 10px;
   width: 100%;
-  box-sizing: border-box;
 }
 
 .add-form input {
   width: 100%;
-  box-sizing: border-box;
   padding: 10px 12px;
   border: 1.5px solid #B8B5A8;
   border-radius: 8px;
@@ -111,7 +129,7 @@
 }
 
 .btn-primary {
-  background: #d86030;
+  background: #D85A30;
   color: #FFFFFF;
   border: none;
   border-radius: 8px;
@@ -146,18 +164,18 @@
   padding: 12px 14px;
   font-size: 14px;
   background: #F7F6F1;
-  border-top: 1px solid #E5E2D6;
-  border-bottom: 1px solid #E5E2D6;
+  border-top: 1.5px solid #C9C6B8;
+  border-bottom: 1.5px solid #C9C6B8;
 }
-
+ 
 .ingredient-table tr td:first-child {
-  border-left: 1px solid #E5E2D6;
+  border-left: 1.5px solid #C9C6B8;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-
+ 
 .ingredient-table tr td:last-child {
-  border-right: 1px solid #E5E2D6;
+  border-right: 1.5px solid #C9C6B8;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -204,4 +222,92 @@
   font-size: 14px;
   text-align: center;
   padding: 20px 0;
+}
+
+/* AI recipe button */
+.btn-ai {
+  width: 100%;
+  background: #2E5240;
+  border: none;
+  color: #FFFFFF;
+  border-radius: 10px;
+  padding: 13px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.btn-ai:disabled {
+  background: #B0C4B5;
+  cursor: not-allowed;
+}
+
+/* Recipe suggestions - tightened spacing so it doesn't feel sparse */
+.recipe-card {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.recipe-text h1,
+.recipe-text h2,
+.recipe-text h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #2E5240;
+  margin: 14px 0 4px;
+}
+
+.recipe-text h3:first-child {
+  margin-top: 0;
+}
+
+.recipe-text p {
+  margin: 4px 0;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.recipe-text ol,
+.recipe-text ul {
+  margin: 4px 0 10px;
+  padding-left: 20px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.recipe-text li {
+  margin-bottom: 4px;
+}
+
+.recipe-text strong {
+  color: #2B2B28;
+}
+
+.recipe-text hr {
+  border: none;
+  border-top: 1px solid #E5E2D6;
+  margin: 12px 0;
+}
+
+/* Fallback: if AI output uses bold numbered lines instead of headers,
+   style the first strong element in a paragraph like a mini-heading */
+.recipe-text p:has(> strong:first-child) {
+  margin-top: 14px;
+}
+ 
+.recipe-text p:has(> strong:first-child) > strong:first-child {
+  font-family: 'Poppins', sans-serif;
+  color: #2E5240;
+  font-size: 14px;
+}
+.recipe-error {
+  background: #FBEFE9;
+  color: #B3502A;
+  border: 1.5px solid #E0A78E;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  margin: 0;
 }

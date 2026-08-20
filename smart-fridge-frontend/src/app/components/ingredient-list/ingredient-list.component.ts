@@ -5,6 +5,7 @@ import { Ingredient } from '../../models/ingredient.model';
 import { IngredientService } from "../../services/ingredient.service";
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { marked } from 'marked';
 
 @Component({
   selector: 'app-ingredient-list',
@@ -20,6 +21,9 @@ export class IngredientListComponent implements OnInit {
   editingId: number | null = null;
   editIngredient: Ingredient = { name: '', quantity: 0, unit: '' };
   username: string | null = null;
+  recipeSuggestion: string = '';
+  isLoadingRecipe: boolean = false;
+  recipeError: string = '';
 
   constructor(private ingredientService: IngredientService,
     private authService: AuthService,
@@ -80,6 +84,24 @@ export class IngredientListComponent implements OnInit {
         this.ingredients = this.ingredients.filter(i => i.id !== id);
       },
       error: (err) => { console.error('Failed to delete ingredient:', err); }
+    });
+  }
+
+  onSuggestRecipe(): void {
+    this.isLoadingRecipe = true;
+    this.recipeSuggestion = '';
+    this.recipeError = '';
+
+    this.ingredientService.suggestRecipe().subscribe({
+      next: (response) => {
+        this.recipeSuggestion = marked.parse(response.suggestion) as string;
+        this.isLoadingRecipe = false;
+      },
+      error: (err) => {
+        console.error('Failed to get recipe suggestion:', err);
+        this.recipeError = 'Could not get a recipe suggestion right now. Please try again in a moment.';
+        this.isLoadingRecipe = false;
+      }
     });
   }
 }

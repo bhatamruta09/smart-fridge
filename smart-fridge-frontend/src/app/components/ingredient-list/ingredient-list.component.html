@@ -13,60 +13,78 @@
 
   <div class="fridge-content">
 
-    <section class="card add-card">
-      <h2>Add an ingredient</h2>
-      <form (ngSubmit)="onAddIngredient()" class="add-form">
-        <input type="text" [(ngModel)]="newIngredient.name" name="name" placeholder="Name" required />
-        <input type="number" [(ngModel)]="newIngredient.quantity" name="quantity" placeholder="Qty" required />
-        <input type="text" [(ngModel)]="newIngredient.unit" name="unit" placeholder="Unit" required />
-        <button type="submit" class="btn-primary">Add</button>
-      </form>
-    </section>
+    <div class="fridge-left">
 
-    <section class="card list-card">
-      <h2>Your fridge</h2>
+      <section class="card add-card">
+        <h2>Add an ingredient</h2>
+        <form (ngSubmit)="onAddIngredient()" class="add-form">
+          <input type="text" [(ngModel)]="newIngredient.name" name="name" placeholder="Name" required />
+          <input type="number" [(ngModel)]="newIngredient.quantity" name="quantity" placeholder="Qty" required />
+          <input type="text" [(ngModel)]="newIngredient.unit" name="unit" placeholder="Unit" required />
+          <button type="submit" class="btn-primary">Add</button>
+        </form>
+      </section>
 
-      <table *ngIf="ingredients.length > 0" class="ingredient-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Quantity</th>
-            <th>Unit</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let ingredient of ingredients">
-            <ng-container *ngIf="editingId !== ingredient.id; else editRow">
-              <td><span class="dot"></span></td>
-              <td>{{ ingredient.name }}</td>
-              <td>{{ ingredient.quantity }}</td>
-              <td>{{ ingredient.unit }}</td>
-              <td class="actions">
-                <button class="btn-icon" (click)="startEdit(ingredient)">Edit</button>
-                <button class="btn-icon btn-danger" (click)="deleteIngredient(ingredient.id!)">Delete</button>
-              </td>
-            </ng-container>
+      <section class="card list-card">
+        <h2>Your fridge</h2>
 
-            <ng-template #editRow>
-              <td></td>
-              <td><input type="text" [(ngModel)]="editIngredient.name" name="editName" /></td>
-              <td><input type="number" [(ngModel)]="editIngredient.quantity" name="editQuantity" /></td>
-              <td><input type="text" [(ngModel)]="editIngredient.unit" name="editUnit" /></td>
-              <td class="actions">
-                <button class="btn-icon" (click)="saveEdit(ingredient.id!)">Save</button>
-                <button class="btn-icon" (click)="cancelEdit()">Cancel</button>
-              </td>
-            </ng-template>
-          </tr>
-        </tbody>
-      </table>
+        <table *ngIf="ingredients.length > 0" class="ingredient-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Quantity</th>
+              <th>Unit</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ingredient of ingredients">
+              <ng-container *ngIf="editingId !== ingredient.id; else editRow">
+                <td><span class="dot"></span></td>
+                <td>{{ ingredient.name }}</td>
+                <td>{{ ingredient.quantity }}</td>
+                <td>{{ ingredient.unit }}</td>
+                <td class="actions">
+                  <button class="btn-icon" (click)="startEdit(ingredient)">Edit</button>
+                  <button class="btn-icon btn-danger" (click)="deleteIngredient(ingredient.id!)">Delete</button>
+                </td>
+              </ng-container>
 
-      <p *ngIf="ingredients.length === 0" class="empty-state">
-        Your fridge is empty. Add your first ingredient above.
-      </p>
-    </section>
+              <ng-template #editRow>
+                <td></td>
+                <td><input type="text" [(ngModel)]="editIngredient.name" name="editName" /></td>
+                <td><input type="number" [(ngModel)]="editIngredient.quantity" name="editQuantity" /></td>
+                <td><input type="text" [(ngModel)]="editIngredient.unit" name="editUnit" /></td>
+                <td class="actions">
+                  <button class="btn-icon" (click)="saveEdit(ingredient.id!)">Save</button>
+                  <button class="btn-icon" (click)="cancelEdit()">Cancel</button>
+                </td>
+              </ng-template>
+            </tr>
+          </tbody>
+        </table>
+
+        <p *ngIf="ingredients.length === 0" class="empty-state">
+          Your fridge is empty. Add your first ingredient above.
+        </p>
+      </section>
+      
+      <button class="btn-ai" (click)="onSuggestRecipe()" [disabled]="isLoadingRecipe || ingredients.length === 0">
+        {{ isLoadingRecipe ? 'Thinking...' : '✦ What can I cook?' }}
+      </button>
+    </div>
+
+    
+
+    <div class="fridge-right"> 
+      <section class="card recipe-card" *ngIf="recipeSuggestion">
+        <h2>Recipe suggestions</h2>
+        <div class="recipe-text" [innerHTML]="recipeSuggestion"></div>
+      </section>
+      <p *ngIf="recipeError" class="recipe-error">{{ recipeError }}</p>
+
+    </div>
 
   </div>
 

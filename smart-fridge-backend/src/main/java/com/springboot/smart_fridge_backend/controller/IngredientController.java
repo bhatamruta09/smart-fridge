@@ -1,11 +1,13 @@
 package com.springboot.smart_fridge_backend.controller;
 
 import com.springboot.smart_fridge_backend.model.Ingredient;
+import com.springboot.smart_fridge_backend.service.AiService;
 import com.springboot.smart_fridge_backend.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/ingredients")
@@ -14,6 +16,9 @@ public class IngredientController {
 
     @Autowired
     private IngredientService ingredientService;
+    
+    @Autowired
+    private AiService aiService;
 
     @GetMapping
     public List<Ingredient> getAllIngredients() {
@@ -33,5 +38,12 @@ public class IngredientController {
     @DeleteMapping("/{id}")
     public void deleteIngredient(@PathVariable Long id) {
         ingredientService.deleteIngredient(id);
+    }
+    
+    @PostMapping("/suggest-recipe")
+    public Map<String, String> suggestRecipe() {
+        List<Ingredient> ingredients = ingredientService.getAllIngredients();
+        String suggestion = aiService.suggestRecipes(ingredients);
+        return Map.of("suggestion", suggestion);
     }
 }

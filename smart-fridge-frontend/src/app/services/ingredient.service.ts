@@ -26,4 +26,8 @@ export class IngredientService {
   deleteIngredient(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+
+  suggestRecipe(): Observable<{ suggestion: string }> {
+    return this.http.post<{ suggestion: string }>(`${this.baseUrl}/suggest-recipe`, {});
+  }
 }
